@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { Home } from "./pages/Home";
+import { List } from "./pages/List";
+import { ItemDetails } from "./pages/ItemDetails";
+import { NotFound } from "./pages/NotFound";
+import { WarehouseProvider } from "./context/data";
 
-function App() {
+export default function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      errorElement: <NotFound />,
+      element: <Navbar />,
+      children: [
+        {
+          index: true,
+          element: <Home />
+        },
+
+        {
+          path: "/list",
+          children: [
+            {
+              index: true,
+              element: (
+
+                <List />
+
+              )
+            },
+            {
+              path: ":itemId",
+              element: (
+
+                <ItemDetails />
+
+              )
+            }
+          ]
+        }
+      ]
+    }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WarehouseProvider>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </WarehouseProvider>
+
   );
 }
-
-export default App;

@@ -6,7 +6,7 @@ export const Home = () => {
       <h3 className="title"><u>WareHouse Manager</u></h3>
       <img
         className="image"
-        src="https://tinyurl.com/2rmcfxh4"
+        src="https://media.istockphoto.com/id/1405246054/photo/empty-warehouse-in-logistic-center.jpg?s=612x612&w=0&k=20&c=G2GPj8tAeTs71u3hHD9qze_8F41KsoTpopbW94CcRYs="
         alt="shoe"
       />
       <p className="description">
